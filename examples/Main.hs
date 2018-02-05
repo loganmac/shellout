@@ -1,18 +1,3 @@
-# shellout
-
-A simple library for running standard processes in a threaded manager
-, and responding to/doing things with stdout, stderr, and exits as they happen.
-
-This was mainly built out of frustration that most libraries wait for a task
-to complete before giving output.
-
-Just initialize with a driver and off you go!
-
-## Example
-
-Here's a short annotated example on how to use this:
-
-```haskell
 {-# LANGUAGE OverloadedStrings #-}
 module Main where
 
@@ -33,8 +18,7 @@ main = do
   -- create a 'driver', with functions that handle each type of output
   let driver = Shellout.Driver
         -- (optionally) do something with the task name, and initialize
-        -- data that will be passed between your handlers. you could store
-        -- things like the task name, a spinner's position and last spin time, etc.
+        -- data that will be passed between your handlers.
         { Shellout.initialState =
           \taskName -> Task {name = taskName}
 
@@ -66,5 +50,4 @@ main = do
 
   shell "listing directory" "ls"
 
-  shell "listing hidden files" "ls -lah"
-```
+  shell "listing hidden files too" "ls -lah"
